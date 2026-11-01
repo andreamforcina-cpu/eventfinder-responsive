@@ -7,7 +7,7 @@ function EventCard({ event }) {
   return (
     <div className="event-card">
       <img 
-        src={event.images[0].url} 
+        src={event.images?.[0]?.url} 
         alt={event.name}
         className="event-image"
       />
