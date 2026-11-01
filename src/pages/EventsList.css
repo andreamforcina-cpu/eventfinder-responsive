@@ -1,62 +1,22 @@
-.events-page {
-  padding: 40px;
-  max-width: 1400px;
-  margin: 0 auto;
+/* Mobile-first: one full-width column, then two cards from 48rem. */
+.events-page { padding: 1.25rem; max-width: 87.5rem; margin: 0 auto; }
+.loading, .events-message { text-align: center; padding: 4rem 1rem; font-size: 1.125rem; color: #555; }
+.page-header { margin-bottom: 2rem; }
+.page-header h1 { font-size: clamp(1.75rem, 4vw, 2.625rem); color: #2c3e50; margin-bottom: .625rem; }
+.page-header p { font-size: 1.125rem; color: #666; }
+.events-container { display: flex; flex-direction: column; gap: 1.5rem; }
+.sidebar { width: 100%; min-width: 0; }
+.filter-section { background: white; padding: 1.5rem; border-radius: .5rem; box-shadow: 0 .125rem .5rem #0000001a; }
+.filter-section h2 { font-size: 1.5rem; margin-bottom: .9375rem; color: #2c3e50; }
+.filter-note { font-size: .875rem; color: #666; overflow-wrap: anywhere; }
+.events-grid { display: flex; flex-wrap: wrap; flex: 1; min-width: 0; gap: 1.5rem; }
+.events-grid > .event-card { flex: 0 0 100%; min-width: 0; }
+@media (min-width: 48rem) {
+  .events-page { padding: 2rem; }
+  .events-grid > .event-card { flex-basis: calc((100% - 1.5rem) / 2); }
 }
-
-.loading {
-  text-align: center;
-  padding: 100px 0;
-  font-size: 24px;
-  color: #666;
-}
-
-.page-header {
-  margin-bottom: 40px;
-}
-
-.page-header h1 {
-  font-size: 42px;
-  color: #2c3e50;
-  margin-bottom: 10px;
-}
-
-.page-header p {
-  font-size: 18px;
-  color: #666;
-}
-
-.events-container {
-  display: flex;
-  gap: 40px;
-}
-
-.sidebar {
-  width: 280px;
-  flex-shrink: 0;
-}
-
-.filter-section {
-  background-color: white;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.filter-section h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-.filter-note {
-  font-size: 14px;
-  color: #999;
-}
-
-.events-grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+@media (min-width: 64rem) {
+  .events-page { padding: 2.5rem; }
+  .events-container { flex-direction: row; align-items: flex-start; gap: 2.5rem; }
+  .sidebar { flex: 0 0 17.5rem; }
 }
