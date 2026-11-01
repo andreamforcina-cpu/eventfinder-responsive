@@ -9,19 +9,20 @@ function EventDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchEventDetail();
-  }, [id]);
-
-  const fetchEventDetail = async () => {
-    try {
-      const data = await getEventById(id);
-      setEvent(data);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching event:', error);
-      setLoading(false);
+    let active = true;
+    async function fetchEventDetail() {
+      try {
+        const data = await getEventById(id);
+        if (active) setEvent(data);
+      } catch (error) {
+        console.error('Error fetching event:', error);
+      } finally {
+        if (active) setLoading(false);
+      }
     }
-  };
+    fetchEventDetail();
+    return () => { active = false; };
+  }, [id]);
 
   if (loading) {
     return <div className="loading">Loading event details...</div>;
