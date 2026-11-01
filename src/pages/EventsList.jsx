@@ -6,25 +6,29 @@ import './EventsList.css';
 function EventsList() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    fetchEvents();
-  }, []);
-
-  const fetchEvents = async () => {
-    try {
-      const data = await getEvents();
-      setEvents(data);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching events:', error);
-      setLoading(false);
+    let active = true;
+    async function fetchEvents() {
+      try {
+        const data = await getEvents();
+        if (active) setEvents(data);
+      } catch (error) {
+        if (active) setError(error.message);
+      } finally {
+        if (active) setLoading(false);
+      }
     }
-  };
+    fetchEvents();
+    return () => { active = false; };
+  }, []);
 
   if (loading) {
     return <div className="loading">Loading events...</div>;
   }
+
+  if (error) return <div className="events-message" role="alert">{error}</div>;
 
   return (
     <div className="events-page">
@@ -42,6 +46,7 @@ function EventsList() {
         </aside>
         
         <main className="events-grid">
+          {!events.length && <p>No upcoming events found.</p>}
           {events.map(event => (
             <EventCard key={event.id} event={event} />
           ))}
