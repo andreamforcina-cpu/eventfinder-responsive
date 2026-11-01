@@ -28,3 +28,11 @@
   font-size: 18px;
   font-weight: 500;
 }
+
+/* Keep navigation usable at narrow widths too. */
+@media (max-width: 47.999rem) {
+  .header-container { padding: 0 1.25rem; flex-wrap: wrap; gap: .75rem; }
+  .logo { font-size: 1.75rem; margin: 0; }
+  .nav { gap: 1rem; flex-wrap: wrap; }
+  .nav-link { min-height: 2.75rem; display: inline-flex; align-items: center; }
+}
