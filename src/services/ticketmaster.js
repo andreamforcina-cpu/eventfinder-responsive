@@ -2,8 +2,9 @@ const API_KEY = import.meta.env.VITE_TICKETMASTER_API_KEY;
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2';
 
 export const getEvents = async (city = 'New York', size = 20) => {
+  if (!API_KEY) throw new Error('Add VITE_TICKETMASTER_API_KEY to .env and restart the app.');
   const response = await fetch(
-    `${BASE_URL}/events.json?apikey=${API_KEY}&size=${size}&city=${city}`
+    `${BASE_URL}/events.json?apikey=${API_KEY}&size=${size}&city=${encodeURIComponent(city)}`
   );
   
   if (!response.ok) {
@@ -15,6 +16,7 @@ export const getEvents = async (city = 'New York', size = 20) => {
 };
 
 export const getEventById = async (id) => {
+  if (!API_KEY) throw new Error('Add VITE_TICKETMASTER_API_KEY to .env and restart the app.');
   const response = await fetch(
     `${BASE_URL}/events/${id}.json?apikey=${API_KEY}`
   );
