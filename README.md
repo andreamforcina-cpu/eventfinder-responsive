@@ -1,69 +1,19 @@
-# EventFinder - Starter Code
+# EventFinder — Responsive React Application
 
-This is the starter application for **Assignment 9: Making Your App Work on Every Screen**.
+Application Development II, Assignment 8. Based on RizeComputerScience/COMPSX-EventFinder.
 
-## Current Problems
+## Responsive layout
+- Mobile base (375px): stacked filters and one card per row.
+- Tablet (48rem / 768px): two cards per row with flex-basis.
+- Desktop (64rem / 1024px): 17.5rem sidebar next to results.
+- Responsive units, fluid 16:9 images, wrapping titles/navigation, border-box sizing, and minimum 44px detail buttons.
 
-This app is **broken on mobile devices**. Try these things to see the problems:
+## Run
+1. Run `npm ci`.
+2. Copy `.env.example` to `.env` and set `VITE_TICKETMASTER_API_KEY` to your own Ticketmaster Discovery Consumer Key.
+3. Run `npm run dev` and open `/events`.
 
-1. Resize your browser window to 375px wide (phone size)
-2. Open it on your actual phone
-3. Use Chrome DevTools responsive mode
+No API key is included. Without a key the app displays configuration guidance. Live Ticketmaster requests have not been verified because developer-account access was unavailable. No fabricated events are presented as real data.
 
-You'll see:
-- The header navigation doesn't fit
-- The sidebar and events grid don't stack properly
-- Text is too large on mobile
-- The event cards look stretched
-- Everything requires horizontal scrolling
-
-## Setup Instructions
-
-
-1. Fork and clone down the repository to your own machine. Don't forgot to install dependencies
-```bash
-git clone REPO_NAME
-cd REPO_NAME
-npm install
-```
-2. Start the development server and explore the starter code.
-```bash
-npm run dev
-```
-3. Open the app in your browser and resize the window to see the problems! You'll notice that you need an API key before you can start.
-4. Get your Ticketmaster API key by doing the following
-    - Go to https://developer.ticketmaster.com/
-    - Click "Get Your API Key" or "Register"
-    - Create an account
-    - Click "Add a new app"
-    - Remove "OAuth product" from the Product field
-    - Click "Create application"
-    - Copy your **Consumer Key** - this is your API key!
-
-5. Create a `.env` file in the root of your project:
-```bash
-VITE_TICKETMASTER_API_KEY=your_actual_api_key_here
-```
-
-**Important:** Never commit your `.env` file to Git! It's already in `.gitignore`.
-
-5. Run the app to see events!
-```bash
-npm run dev
-```
-
-Open http://localhost:5173 in your browser.
-
-## Your Assignment
-
-Make this application fully responsive using:
-- Mobile-first design approach
-- Responsive CSS units (rem, em, %, vw, vh)
-- CSS Flexbox and Grid
-- Media queries
-- Accessibility best practices
-
-The app should look great on:
-- Mobile phones (320px - 480px)
-- Tablets (481px - 768px)
-- Desktops (769px and up)
+## Validation
+`npm test`, `npm run build`, and `npm run lint` passed locally. The three functional tests use mocked API responses for cards/detail links, HTTP failures, and empty results. Visual checks at the three target viewport widths remain unverified; the local browser used for that check did not launch.
